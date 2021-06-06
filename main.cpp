@@ -8,6 +8,20 @@
 
 using namespace std;
 
+void recursiveInsertionSort(int arr[], int size) {
+    if(size <= 1) {
+        return;
+    }
+    recursiveInsertionSort(arr, size - 1);
+
+    int pos = size - 1;
+
+    while(pos > 0 && arr[pos] < arr[pos - 1]) {
+        swap(&arr[pos], &arr[pos-1]);
+        pos--;
+    }
+}
+
 int sumOfDigits(long n) {
     if(n == 0) {
         return 0;
@@ -37,6 +51,49 @@ int findMinIndex(int arr[], int size) {
         return 0;
     } else {
         return p;
+    }
+}
+
+void printPattern(int n) {
+    if(n < 1) {
+        return;
+    }
+    for(int i = 1; i <= n; i++) {
+        cout << "*";
+    }
+    cout << endl;
+
+    printPattern(n - 1);
+
+    for(int i = 1; i <= n; i++) {
+        cout << "*";
+    }
+    cout << endl;
+}
+
+bool isOdd(int num);
+
+bool isEven(int num) {
+    return num == 0 ? true : isOdd(num - 1);
+}
+
+bool isOdd(int num) {
+    return num == 0 ? false : isEven(num - 1);
+}
+
+int findGCD(int a, int b) {
+    if(a % b == 0) {
+        return b;
+    } else {
+        return findGCD(b, (a % b));
+    }
+}
+
+double sumSeries(int n) {
+    if(n == 1) {
+        return 1;
+    } else {
+        return 1.0 / n + sumSeries(n - 1);
     }
 }
 
